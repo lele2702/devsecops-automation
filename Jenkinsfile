@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        git.exe
+    }
     stages {
         stage('Build') {
             steps {

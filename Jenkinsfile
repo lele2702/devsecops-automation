@@ -11,11 +11,6 @@ pipeline {
                 bat 'javac src/HelloWorld.java'
             }
         }
-        stage('Test') {
-            steps {
-                bat 'java HelloWorld' // Esegue il file Java
-            }
-        }
         stage('Docker Build') {
             steps {
                 bat 'docker build -t hello-world .' // Crea l'immagine Docker

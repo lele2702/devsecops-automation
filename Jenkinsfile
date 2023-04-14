@@ -4,38 +4,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'javac HelloWorld.java' // Compila il codice Java
+                bat 'javac HelloWorld.java' // Compila il file Java
             }
         }
         stage('Test') {
             steps {
-                bat 'java HelloWorld' // Esegue il codice Java
+                bat 'java HelloWorld' // Esegue il file Java
             }
         }
         stage('Docker Build') {
             steps {
-                script {
-                    // Crea l'immagine Docker
-                    docker.build("my-hello-world:${env.BUILD_ID}")
-                }
+                bat 'docker build -t hello-world .' // Crea l'immagine Docker
             }
         }
-        stage('Docker Publish') {
+        stage('Docker Push') {
             steps {
-                script {
-                    // Pubblica l'immagine Docker su un registro Docker
-                    docker.withRegistry('https://registry.example.com', 'docker-credentials') {
-                        dockerImage.push()
-                    }
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    // Utilizza le credenziali Docker Hub
+                    bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%" // Effettua l'accesso a Docker Hub
                 }
+                bat 'docker push hello-world' // Carica l'immagine Docker su Docker Hub
             }
-        }
-    }
-
-    post {
-        always {
-            // Rimuovi l'immagine Docker locale dopo la build
-            sh 'docker rmi my-hello-world:${env.BUILD_ID}'
         }
     }
 }

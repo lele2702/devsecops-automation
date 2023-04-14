@@ -12,14 +12,14 @@ pipeline {
         stage('Compile') {
             steps {
                 // Compila il file HelloWorld.java
-                sh 'javac HelloWorld.java'
+                bat 'javac HelloWorld.java'
             }
         }
 
         stage('Run') {
             steps {
                 // Esegui il file compilato HelloWorld.class
-                sh 'java HelloWorld'
+                bat 'java HelloWorld'
             }
         }
     }

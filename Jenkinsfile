@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'javac HelloWorld.java' // Compila il file Java
+                // Clona il repository Git
+                git 'https://github.com/tuo/nome-repository.git'
+
+                // Compila il codice Java
+                bat 'javac src/HelloWorld.java'
             }
         }
         stage('Test') {

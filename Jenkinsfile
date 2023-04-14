@@ -18,7 +18,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t src .' // Crea l'immagine Docker
+                bat 'docker build -t .' // Crea l'immagine Docker
             }
         }
     }

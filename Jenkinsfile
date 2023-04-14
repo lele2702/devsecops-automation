@@ -12,7 +12,7 @@ pipeline {
         stage('Compile') {
             steps {
                 // Compila il file HelloWorld.java
-                bat 'javac HelloWorld.java'
+                bat 'javac src/HelloWorld.java'
             }
         }
 

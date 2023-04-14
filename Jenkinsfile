@@ -16,10 +16,9 @@ pipeline {
             }
         }
 
-        stage('Run') {
+        stage('Docker Build') {
             steps {
-                // Esegui il file compilato HelloWorld.class
-                bat 'java src/HelloWorld'
+                bat 'docker build -t hello-world .' // Crea l'immagine Docker
             }
         }
     }

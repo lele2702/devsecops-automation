@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clona il repository Git
-                git 'https://github.com/tuo/nome-repository.git'
+                git 'https://github.com/lele2702/devsecops-automation/blob/main/Jenkinsfile'
 
                 // Compila il codice Java
                 bat 'javac src/HelloWorld.java'

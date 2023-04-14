@@ -19,7 +19,7 @@ pipeline {
         stage('Run') {
             steps {
                 // Esegui il file compilato HelloWorld.class
-                bat 'java HelloWorld'
+                bat 'java src/HelloWorld'
             }
         }
     }
